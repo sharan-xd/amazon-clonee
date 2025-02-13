@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number Verification</title>
+    <style>
+        body {
+            font-family: "Amazon Ember", Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 20px;
+        }
+        .logo img {
+            padding-bottom: 100px;
+            width: 120px;
+            height: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 350px;
+            margin-top: 120px; 
+        }
+        h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .input-group {
+            display: flex;
+            margin: 10px 0;
+            align-items: center;
+        }
+        .input-group select {
+            width: 30%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .input-group input {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #161313;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #f3d344;
+            color: rgb(16, 15, 15);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 20px;
+        }
+        button:hover {
+            background-color: #d1c237;
+        }
+        p, h5, h6 {
+            text-align: left;
+        }
+        p a {
+            text-decoration: none;
+            color: #0b498d;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.example.com" class="logo">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngmart.com%2Ffiles%2F23%2FAmazon-Logo-White-PNG-HD.png&f=1&nofb=1&ipt=d3b3b6952f1574d1abd18733c01d23717612d87f3e16bb0b432eed1ae9ba71f4&ipo=images" alt="Logo">
+    </a>
+    <div class="container">
+        <h2>Create Account</h2>
+        <form id="createAccountForm" action="#" method="POST" onsubmit="return validateForm()">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required placeholder="First and last name">
+            <span id="nameError" class="error"></span><br>
+            
+            <div class="input-group">
+                <label for="countryCode">Mobile number:</label>
+                <select id="countryCode" name="countryCode" required>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+61">+61 (Australia)</option>
+                    <option value="+81">+81 (Japan)</option>
+                </select>
+                <input type="tel" id="mobileNumber" name="mobileNumber" pattern="\d{10}" required placeholder="Enter 10 digit number">
+                <span id="mobileNumberError" class="error"></span>
+            </div>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" minlength="6" required placeholder="At least 6 characters">
+            <span id="passwordError" class="error"></span><br>
+
+            <p>Passwords must be at least 6 characters.</p>
+            <p>To verify your number, we will send you a text message with a temporary code. Message and data rates may apply.</p>
+
+            <button type="submit">Verify Mobile Number</button>
+            <hr>
+            <h5>Buying for work?</h5>
+            <p>Create a free business account</p>
+            <hr>
+            <p>Already have an account? <a href="./index70.html">Sign In</a></p> 
+            <h6>By creating an account or logging in, you agree to Amazon’s Conditions of Use and Privacy Policy.</h6>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Name validation: no symbols, only letters and spaces
+            const name = document.getElementById("name").value;
+            const nameError = document.getElementById("nameError");
+            if (!/^[a-zA-Z\s]+$/.test(name)) {
+                nameError.textContent = "Name should only contain letters and spaces.";
+                isValid = false;
+            } else {
+                nameError.textContent = "";
+            }
+
+            // Mobile number validation: only numbers and 10 digits
+            const mobileNumber = document.getElementById("mobileNumber").value;
+            const mobileNumberError = document.getElementById("mobileNumberError");
+            if (!/^\d{10}$/.test(mobileNumber)) {
+                mobileNumberError.textContent = "Mobile number must be 10 digits and contain only numbers.";
+                isValid = false;
+            } else {
+                mobileNumberError.textContent = "";
+            }
+
+            // Password validation: minimum 6 characters
+            const password = document.getElementById("password").value;
+            const passwordError = document.getElementById("passwordError");
+            if (password.length < 6) {
+                passwordError.textContent = "Password must be at least 6 characters.";
+                isValid = false;
+            } else {
+                passwordError.textContent = "";
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
